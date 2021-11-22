@@ -14,11 +14,6 @@ namespace VPN
             //Variabler
             string scene = "Menu";
             bool playerIsAlive = true;
-            float speed = 1f;
-            bool PlayerDirectionUp = false;
-            bool PlayerDirectionDown = false;
-            bool PlayerDirectionLeft = false;
-            bool PlayerDirectionRight = true;
 
             Player p = new Player();
 
