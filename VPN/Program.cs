@@ -99,7 +99,7 @@ namespace VPN
                     }
                 }
 
-                if (scene == " Arena")
+                if (scene == "Arena")
                 {
                     p.Update();
 
