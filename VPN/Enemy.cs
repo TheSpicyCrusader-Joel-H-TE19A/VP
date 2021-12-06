@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Numerics;
+using Raylib_cs;
 
 namespace VPN
 {
@@ -7,6 +10,6 @@ namespace VPN
         public int enemyHP;
         public int enemyDMG;
 
-        public int enemySpeed;
+        public float enemySpeed = 1;
     }
 }

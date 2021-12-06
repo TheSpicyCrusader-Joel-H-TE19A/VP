@@ -7,8 +7,8 @@ namespace VPN
 {
     public class Player
     {
-        public int playerHP;
-        public int playerDMG;
+        public int playerHP = 100;
+        public int playerDMG = 5;
 
         public int playerProjectileSpeed = 3;
 
@@ -16,9 +16,7 @@ namespace VPN
 
         public Vector2 movement = new Vector2();
 
-        public Rectangle PlayerRec = new Rectangle(Raylib.GetScreenWidth() / 2 - 75, Raylib.GetScreenHeight() / 2 - 80, 30, 90);
-
-        // private List<Vector2> bullets = new List<Vector2>();
+        public Rectangle PlayerRec;
 
         Texture2D PlayerRight = Raylib.LoadTexture("PlayerRight.png");
         Texture2D PlayerLeft = Raylib.LoadTexture("PlayerLeft.png");
@@ -29,8 +27,18 @@ namespace VPN
 
         public Player()
         {
-            currentState = PlayerDown; //fungerar som idle 
+            Reset();
         }
+        public void Reset()
+        {
+            PlayerRec = new Rectangle(Raylib.GetScreenWidth() / 2 - 75, Raylib.GetScreenHeight() / 2 - 80, 30, 90); //positionen som resettar till startpositionen
+            currentState = PlayerDown; //fungerar som idle/startpositions state
+            playerHP = 100;
+            playerSpeed = 1;
+            playerDMG = 5;
+            playerProjectileSpeed = 1;
+        }
+
         public void PlayerUpdate()
         {
             movement.X = 0;
