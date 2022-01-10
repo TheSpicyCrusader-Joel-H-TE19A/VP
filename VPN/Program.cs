@@ -19,7 +19,9 @@ namespace VPN
             Player p = new Player();
             Enemy e = new Enemy();
 
-
+            //logos
+            Texture2D LOGO = Raylib.LoadTexture("Brandons Adventure.png");
+            Texture2D DeadscreenLOGO = Raylib.LoadTexture("Deadscreen_logo.png");
             //Interactives
             Rectangle buttonPlay = new Rectangle(650, 500, 500, 100);
             Rectangle buttonExit = new Rectangle(650, 700, 500, 100);
@@ -34,6 +36,7 @@ namespace VPN
                 if (scene == "Menu")
                 {
                     bgColor = Color.ORANGE;
+                    Raylib.DrawTexture(LOGO, 300, 125, Color.WHITE);
                     //menu buttons
                     if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonPlay) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
                     {
@@ -84,6 +87,8 @@ namespace VPN
                 if (scene == "Menu")
                 {
                     playerIsAlive = true;
+                    //Logo
+
                     //PlayButton
                     if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonPlay))
                     {
@@ -135,6 +140,7 @@ namespace VPN
                 if (scene == "Deadscreen")
                 {
                     bgColor = Color.GRAY;
+                    Raylib.DrawTexture(DeadscreenLOGO, 300, 25, Color.WHITE);
 
                     if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonRetry))
                     {
