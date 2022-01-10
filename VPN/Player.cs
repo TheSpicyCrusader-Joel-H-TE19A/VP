@@ -31,7 +31,7 @@ namespace VPN
         }
         public void Reset()
         {
-            PlayerRec = new Rectangle(Raylib.GetScreenWidth() / 2 - 75, Raylib.GetScreenHeight() / 2 - 80, 30, 90); //positionen som resettar till startpositionen
+            PlayerRec = new Rectangle(Raylib.GetScreenWidth() / 2 - 78, Raylib.GetScreenHeight() / 2 - 80, 30, 90); //positionen som resettar till startpositionen
             currentState = PlayerDown; //fungerar som idle/startpositions state
             playerHP = 100;
             playerSpeed = 1;
