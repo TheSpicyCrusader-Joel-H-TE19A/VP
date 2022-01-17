@@ -20,8 +20,9 @@ namespace VPN
             Enemy e = new Enemy();
 
             //logos
-            Texture2D LOGO = Raylib.LoadTexture("Brandons Adventure.png");
+            Texture2D LOGO = Raylib.LoadTexture("BrandonsAdventure_logo.png");
             Texture2D DeadscreenLOGO = Raylib.LoadTexture("Deadscreen_logo.png");
+            Texture2D ButtonLayout = Raylib.LoadTexture("ButtonLayout.png");
             //Interactives
             Rectangle buttonPlay = new Rectangle(650, 500, 500, 100);
             Rectangle buttonExit = new Rectangle(650, 700, 500, 100);
@@ -40,7 +41,7 @@ namespace VPN
                     //menu buttons
                     if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonPlay) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
                     {
-                        scene = "Arena";
+                        scene = "Intro";
                         p.Reset();
                     }
                     if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonExit) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
@@ -49,6 +50,22 @@ namespace VPN
                     }
                 }
                 //Logic
+                if (scene == "Intro")
+                {
+                    bgColor = Color.GREEN;
+                    Raylib.DrawTexture(ButtonLayout, 300, 400, Color.WHITE);
+                    Raylib.DrawText("- Welcome to Brandons advetnure!", 50, 50, 40, Color.BLACK);
+                    Raylib.DrawText("- Your objective is to guide Brandom to his home safely.", 50, 100, 40, Color.BLACK);
+                    Raylib.DrawText("- To guide Brandom home you have to get to the purple squares.", 50, 150, 40, Color.BLACK);
+                    Raylib.DrawText("- But avoid the red squares as they will kill Brandon.", 50, 200, 40, Color.BLACK);
+                    Raylib.DrawText("- You can guide Brandon using the W, A, S and D buttons.", 50, 250, 40, Color.BLACK);
+                    Raylib.DrawText("- Press the ENTER button to continue.", 50, 300, 40, Color.BLACK);
+                    Raylib.DrawText("- Good luck :)", 50, 350, 40, Color.BLACK);
+                    if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
+                    {
+                        scene = "Arena";
+                    }
+                }
 
                 if (scene == "Arena")
                 {
