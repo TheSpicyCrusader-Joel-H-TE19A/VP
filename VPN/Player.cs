@@ -16,7 +16,7 @@ namespace VPN
 
         public Vector2 movement = new Vector2();
 
-        public Rectangle PlayerRec;
+        public Rectangle rect;
 
         Texture2D PlayerRight = Raylib.LoadTexture("PlayerRight.png");
         Texture2D PlayerLeft = Raylib.LoadTexture("PlayerLeft.png");
@@ -31,7 +31,7 @@ namespace VPN
         }
         public void Reset()
         {
-            PlayerRec = new Rectangle(Raylib.GetScreenWidth() / 2 - 78, Raylib.GetScreenHeight() / 2 - 80, 30, 90); //positionen som resettar till startpositionen
+            rect = new Rectangle(Raylib.GetScreenWidth() / 2 - 78, Raylib.GetScreenHeight() / 2 - 80, 30, 90); //positionen som resettar till startpositionen
             currentState = PlayerDown; //fungerar som idle/startpositions state
             playerHP = 100;
             playerSpeed = 1;
@@ -44,36 +44,34 @@ namespace VPN
             movement.X = 0;
             movement.Y = 0;
 
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_D) && PlayerRec.x < Raylib.GetScreenWidth() - 75)
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_D) && rect.x < Raylib.GetScreenWidth() - 78)
             {
                 movement.X = playerSpeed;
                 currentState = PlayerRight;
             }
-            else if (Raylib.IsKeyDown(KeyboardKey.KEY_A) && PlayerRec.x > 0)
+            else if (Raylib.IsKeyDown(KeyboardKey.KEY_A) && rect.x > 0)
             {
                 movement.X = -playerSpeed;
                 currentState = PlayerLeft;
             }
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_S) && PlayerRec.y < Raylib.GetScreenHeight() - 80)
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_S) && rect.y < Raylib.GetScreenHeight() - 80)
             {
                 movement.Y = playerSpeed;
                 currentState = PlayerDown;
             }
-            else if (Raylib.IsKeyDown(KeyboardKey.KEY_W) && PlayerRec.y > 0)
+            else if (Raylib.IsKeyDown(KeyboardKey.KEY_W) && rect.y > 0)
             {
                 movement.Y = -playerSpeed;
                 currentState = PlayerUp;
             }
 
-            // bullets.Add(new Vector2(PlayerRec.x, PlayerRec.y));
-
-            PlayerRec.x += movement.X;
-            PlayerRec.y += movement.Y;
+            rect.x += movement.X;
+            rect.y += movement.Y;
         }
 
         public void PlayerDraw()
         {
-            Raylib.DrawTexture(currentState, (int)PlayerRec.x, (int)PlayerRec.y, Color.WHITE);
+            Raylib.DrawTexture(currentState, (int)rect.x, (int)rect.y, Color.WHITE);
         }
     }
 }

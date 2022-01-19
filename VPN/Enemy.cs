@@ -13,18 +13,20 @@ namespace VPN
         public float enemySpeed = 1;
 
         public Random EnemyPos = new Random();
-        Texture2D EnemyTexture = Raylib.LoadTexture("EnemyImage.png");
+        Texture2D texture = Raylib.LoadTexture("Enemy.png");
 
-        public Rectangle EnemyRec;
+        public Rectangle rect;
 
-        public Enemy()
+        public Enemy(float x, float y)
         {
-            Reset();
+            rect = new Rectangle(x, y, 78, 80);
+
+            // Reset();
         }
 
         public void Reset()
         {
-            EnemyRec = new Rectangle(-78, 100 - 80, 30, 90);
+            rect = new Rectangle(-78, 100 - 80, 30, 90);
         }
 
         public void EnemyUpdate()
@@ -32,9 +34,9 @@ namespace VPN
 
         }
 
-        public void EnemyDraw()
+        public void Draw()
         {
-
+            Raylib.DrawTexture(texture, (int)rect.x, (int)rect.y, Color.WHITE);
         }
     }
 }

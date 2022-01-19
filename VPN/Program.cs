@@ -9,15 +9,29 @@ namespace VPN
     {
         static void Main(string[] args)
         {
-            Raylib.InitWindow(1800, 900, "Brandons adventure");
+            Raylib.InitWindow(1800, 910, "Brandons adventure");
 
+
+            List<Enemy> enemies = new List<Enemy>();
+            enemies.Add(new Enemy(10, 10));
+            enemies.Add(new Enemy(10, 100));
+            enemies.Add(new Enemy(10, 190));
+            enemies.Add(new Enemy(10, 280));
+            enemies.Add(new Enemy(10, 370));
+            enemies.Add(new Enemy(10, 460));
+            enemies.Add(new Enemy(10, 550));
+            enemies.Add(new Enemy(10, 640));
+            enemies.Add(new Enemy(10, 730));
+            enemies.Add(new Enemy(10, 820));
+            enemies.Add(new Enemy(10, 910));
 
             //Variabler
             string scene = "Menu";
             bool playerIsAlive = true;
+            bool victory = false;
 
             Player p = new Player();
-            Enemy e = new Enemy();
+            // Enemy e = new Enemy(0, 0);
 
             //logos
             Texture2D LOGO = Raylib.LoadTexture("BrandonsAdventure_logo.png");
@@ -80,6 +94,16 @@ namespace VPN
                     if (playerIsAlive == false)
                     {
                         scene = "Deadscreen";
+                    }
+
+
+
+                    foreach (Enemy e in enemies)
+                    {
+                        if (Raylib.CheckCollisionRecs(p.rect, e.rect))
+                        {
+                            scene = "Deadscreen";
+                        }
                     }
 
                 }
@@ -152,6 +176,10 @@ namespace VPN
                         p.PlayerDraw();
                     }
 
+                    foreach (Enemy e in enemies)
+                    {
+                        e.Draw();
+                    }
                 }
 
                 if (scene == "Deadscreen")
@@ -194,9 +222,7 @@ namespace VPN
                         Raylib.DrawText("N", 945, 575, 50, Color.WHITE);
                         Raylib.DrawText("U", 1060, 575, 50, Color.WHITE);
                     }
-
                 }
-
                 Raylib.EndDrawing();
             }
         }
