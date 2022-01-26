@@ -37,6 +37,7 @@ namespace VPN
             Texture2D LOGO = Raylib.LoadTexture("BrandonsAdventure_logo.png");
             Texture2D DeadscreenLOGO = Raylib.LoadTexture("Deadscreen_logo.png");
             Texture2D ButtonLayout = Raylib.LoadTexture("ButtonLayout.png");
+            Texture2D HomeBase = Raylib.LoadTexture("Homebase_Logo.png");
             //Interactives
             Rectangle buttonPlay = new Rectangle(650, 500, 500, 100);
             Rectangle buttonExit = new Rectangle(650, 700, 500, 100);
@@ -96,7 +97,10 @@ namespace VPN
                         scene = "Deadscreen";
                     }
 
-
+                    if (victory == true)
+                    {
+                        scene = "Victory";
+                    }
 
                     foreach (Enemy e in enemies)
                     {
@@ -110,6 +114,19 @@ namespace VPN
                 else if (scene == "Deadscreen")
                 {
                     //deadscreen buttons
+                    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonMenu) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+                    {
+                        scene = "Menu";
+                    }
+
+                    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonRetry) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+                    {
+                        scene = "Arena";
+                        p.Reset();
+                    }
+                }
+                else if (scene == "Victory")
+                {
                     if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonMenu) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
                     {
                         scene = "Menu";
@@ -179,6 +196,47 @@ namespace VPN
                     foreach (Enemy e in enemies)
                     {
                         e.Draw();
+                    }
+                }
+
+                if (scene == "Victory")
+                {
+                    bgColor = Color.GREEN;
+                    Raylib.DrawTexture(HomeBase, 300, 25, Color.WHITE);
+                    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonRetry))
+                    {
+                        Raylib.DrawRectangleRec(buttonRetry, Color.WHITE);
+                        Raylib.DrawText("R", 675, 400, 50, Color.BLACK);
+                        Raylib.DrawText("E", 781, 400, 50, Color.BLACK);
+                        Raylib.DrawText("T", 888, 400, 50, Color.BLACK);
+                        Raylib.DrawText("R", 995, 400, 50, Color.BLACK);
+                        Raylib.DrawText("Y", 1100, 400, 50, Color.BLACK);
+                    }
+                    else
+                    {
+                        Raylib.DrawRectangleRec(buttonRetry, Color.BLACK);
+                        Raylib.DrawText("R", 675, 400, 50, Color.WHITE);
+                        Raylib.DrawText("E", 781, 400, 50, Color.WHITE);
+                        Raylib.DrawText("T", 888, 400, 50, Color.WHITE);
+                        Raylib.DrawText("R", 995, 400, 50, Color.WHITE);
+                        Raylib.DrawText("Y", 1100, 400, 50, Color.WHITE);
+                    }
+
+                    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonMenu))
+                    {
+                        Raylib.DrawRectangleRec(buttonMenu, Color.WHITE);
+                        Raylib.DrawText("M", 715, 575, 50, Color.BLACK);
+                        Raylib.DrawText("E", 830, 575, 50, Color.BLACK);
+                        Raylib.DrawText("N", 945, 575, 50, Color.BLACK);
+                        Raylib.DrawText("U", 1060, 575, 50, Color.BLACK);
+                    }
+                    else
+                    {
+                        Raylib.DrawRectangleRec(buttonMenu, Color.BLACK);
+                        Raylib.DrawText("M", 715, 575, 50, Color.WHITE);
+                        Raylib.DrawText("E", 830, 575, 50, Color.WHITE);
+                        Raylib.DrawText("N", 945, 575, 50, Color.WHITE);
+                        Raylib.DrawText("U", 1060, 575, 50, Color.WHITE);
                     }
                 }
 

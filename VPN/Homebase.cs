@@ -5,33 +5,19 @@ using Raylib_cs;
 
 namespace VPN
 {
-    public class Enemy
+    public class Homebase
     {
-        // public int enemyHP;
-        // public int enemyDMG;
-
-        // public float enemySpeed = 1;
-
-        // public Random EnemyPos = new Random();
-        Texture2D texture = Raylib.LoadTexture("Enemy.png");
-
+        Texture2D texture = Raylib.LoadTexture("Homebase.png");
         public Rectangle rect;
 
-        public Enemy(float x, float y)
+        public Homebase(float x, float y)
         {
             rect = new Rectangle(x, y, 78, 80);
-
-            // Reset();
         }
 
         public void Reset()
         {
             rect = new Rectangle(-78, 100 - 80, 30, 90);
-        }
-
-        public void EnemyUpdate()
-        {
-
         }
 
         public void Draw()
