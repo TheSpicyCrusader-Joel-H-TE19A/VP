@@ -11,8 +11,10 @@ namespace VPN
         {
             Raylib.InitWindow(1800, 910, "Brandons adventure");
 
+            //Alla fiender
 
             List<Enemy> enemies = new List<Enemy>();
+            //row 1
             enemies.Add(new Enemy(10, 10));
             enemies.Add(new Enemy(10, 100));
             enemies.Add(new Enemy(10, 190));
@@ -20,10 +22,112 @@ namespace VPN
             enemies.Add(new Enemy(10, 370));
             enemies.Add(new Enemy(10, 460));
             enemies.Add(new Enemy(10, 550));
-            enemies.Add(new Enemy(10, 640));
-            enemies.Add(new Enemy(10, 730));
-            enemies.Add(new Enemy(10, 820));
-            enemies.Add(new Enemy(10, 910));
+            //row 2
+            enemies.Add(new Enemy(100, 100));
+            enemies.Add(new Enemy(100, 190));
+            enemies.Add(new Enemy(100, 280));
+            enemies.Add(new Enemy(100, 370));
+            enemies.Add(new Enemy(100, 550));
+            enemies.Add(new Enemy(100, 640));
+            enemies.Add(new Enemy(100, 730));
+            //row 3
+            enemies.Add(new Enemy(190, 100));
+            enemies.Add(new Enemy(190, 550));
+            //row 4 
+            enemies.Add(new Enemy(280, 100));
+            enemies.Add(new Enemy(280, 280));
+            enemies.Add(new Enemy(280, 370));
+            enemies.Add(new Enemy(280, 460));
+            enemies.Add(new Enemy(280, 550));
+            enemies.Add(new Enemy(280, 730));
+            enemies.Add(new Enemy(280, 820));
+            //row 5
+            enemies.Add(new Enemy(370, 100));
+            enemies.Add(new Enemy(370, 550));
+            //row 6
+            enemies.Add(new Enemy(460, 100));
+            enemies.Add(new Enemy(460, 190));
+            enemies.Add(new Enemy(460, 280));
+            enemies.Add(new Enemy(460, 370));
+            enemies.Add(new Enemy(460, 550));
+            enemies.Add(new Enemy(460, 640));
+            enemies.Add(new Enemy(460, 730));
+            //row 7
+            enemies.Add(new Enemy(550, 100));
+            enemies.Add(new Enemy(550, 550));
+            //row 8
+            enemies.Add(new Enemy(640, 100));
+            enemies.Add(new Enemy(640, 280));
+            enemies.Add(new Enemy(640, 370));
+            enemies.Add(new Enemy(640, 460));
+            enemies.Add(new Enemy(640, 550));
+            enemies.Add(new Enemy(640, 730));
+            enemies.Add(new Enemy(640, 820));
+            //row 9
+            enemies.Add(new Enemy(730, 100));
+            //row 10
+            enemies.Add(new Enemy(820, 100));
+            enemies.Add(new Enemy(820, 630));
+            enemies.Add(new Enemy(820, 730));
+            enemies.Add(new Enemy(820, 820));
+            //row 11
+            enemies.Add(new Enemy(910, 100));
+            //row 12
+            enemies.Add(new Enemy(1000, 100));
+            enemies.Add(new Enemy(1000, 280));
+            enemies.Add(new Enemy(1000, 370));
+            enemies.Add(new Enemy(1000, 460));
+            enemies.Add(new Enemy(1000, 550));
+            enemies.Add(new Enemy(1000, 730));
+            //row 13
+            enemies.Add(new Enemy(1090, 100));
+            enemies.Add(new Enemy(1090, 280));
+            enemies.Add(new Enemy(1090, 550));
+            enemies.Add(new Enemy(1090, 730));
+            //row 14
+            enemies.Add(new Enemy(1180, 100));
+            enemies.Add(new Enemy(1180, 280));
+            enemies.Add(new Enemy(1180, 550));
+            enemies.Add(new Enemy(1180, 730));
+            //row 15
+            enemies.Add(new Enemy(1270, 100));
+            enemies.Add(new Enemy(1270, 280));
+            enemies.Add(new Enemy(1270, 550));
+            enemies.Add(new Enemy(1270, 730));
+            //row 16
+            enemies.Add(new Enemy(1360, 100));
+            enemies.Add(new Enemy(1360, 280));
+            enemies.Add(new Enemy(1360, 550));
+            enemies.Add(new Enemy(1360, 730));
+            //row 17
+            enemies.Add(new Enemy(1450, 100));
+            enemies.Add(new Enemy(1450, 280));
+            enemies.Add(new Enemy(1450, 550));
+            enemies.Add(new Enemy(1450, 730));
+            //row 18
+            enemies.Add(new Enemy(1540, 100));
+            enemies.Add(new Enemy(1540, 730));
+            //row 19
+            enemies.Add(new Enemy(1630, 100));
+            enemies.Add(new Enemy(1630, 190));
+            enemies.Add(new Enemy(1630, 280));
+            enemies.Add(new Enemy(1630, 370));
+            enemies.Add(new Enemy(1630, 460));
+            enemies.Add(new Enemy(1630, 550));
+            enemies.Add(new Enemy(1630, 640));
+            enemies.Add(new Enemy(1630, 730));
+
+            //Alla homebases
+
+            List<Homebase> homebases = new List<Homebase>();
+            //row 1
+            homebases.Add(new Homebase(10, 640));
+            //row 2
+            homebases.Add(new Homebase(100, 10));
+            homebases.Add(new Homebase(100, 370));
+            //row 13
+            homebases.Add(new Homebase(1090, 370));
+            homebases.Add(new Homebase(1090, 460));
 
             //Variabler
             string scene = "Menu";
@@ -45,7 +149,6 @@ namespace VPN
             Rectangle buttonMenu = new Rectangle(650, 550, 500, 100);
 
             Color bgColor = Color.BEIGE;
-            //Obstacles
 
             while (!Raylib.WindowShouldClose() && scene != "Quit")
             {
@@ -84,12 +187,16 @@ namespace VPN
 
                 if (scene == "Arena")
                 {
-                    Raylib.DrawText($"Player HP: {p.playerHP}", 750, 25, 40, Color.BLACK);
                     playerIsAlive = true;
                     bgColor = Color.BLUE;
                     if (Raylib.IsKeyPressed(KeyboardKey.KEY_Q))
                     {
                         playerIsAlive = false;
+                    }
+
+                    if (Raylib.IsKeyPressed(KeyboardKey.KEY_E))
+                    {
+                        scene = "Victory";
                     }
 
                     if (playerIsAlive == false)
@@ -107,6 +214,13 @@ namespace VPN
                         if (Raylib.CheckCollisionRecs(p.rect, e.rect))
                         {
                             scene = "Deadscreen";
+                        }
+                    }
+                    foreach (Homebase h in homebases)
+                    {
+                        if (Raylib.CheckCollisionRecs(p.rect, h.rect))
+                        {
+                            scene = "Victory";
                         }
                     }
 
@@ -196,6 +310,10 @@ namespace VPN
                     foreach (Enemy e in enemies)
                     {
                         e.Draw();
+                    }
+                    foreach (Homebase h in homebases)
+                    {
+                        h.Draw();
                     }
                 }
 

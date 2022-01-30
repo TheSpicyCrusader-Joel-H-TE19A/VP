@@ -33,9 +33,7 @@ namespace VPN
         {
             rect = new Rectangle(Raylib.GetScreenWidth() / 2 - 78, Raylib.GetScreenHeight() / 2 - 80, 30, 90); //positionen som resettar till startpositionen
             currentState = PlayerDown; //fungerar som idle/startpositions state
-            playerHP = 100;
             playerSpeed = 1;
-            playerDMG = 5;
             playerProjectileSpeed = 1;
         }
 
