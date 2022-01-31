@@ -51,10 +51,8 @@ namespace VPN
             //Variabler
             string scene = "Menu";
             bool playerIsAlive = true;
-            bool victory = false;
-
             Player p = new Player();
-            // Enemy e = new Enemy(0, 0);
+
 
             //logos
             Texture2D LOGO = Raylib.LoadTexture("BrandonsAdventure_logo.png");
@@ -108,6 +106,7 @@ namespace VPN
                 {
                     playerIsAlive = true;
                     bgColor = Color.BLUE;
+                    //commands
                     if (Raylib.IsKeyPressed(KeyboardKey.KEY_Q))
                     {
                         scene = "Deadscreen";
@@ -118,6 +117,7 @@ namespace VPN
                         scene = "Victory";
                     }
 
+                    //collision 
                     foreach (Block e in blocks)
                     {
                         if (Raylib.CheckCollisionRecs(p.rect, e.rect))
@@ -132,13 +132,6 @@ namespace VPN
                             }
                         }
                     }
-                    // foreach (Homebase h in homebases)
-                    // {
-                    //     if (Raylib.CheckCollisionRecs(p.rect, h.rect))
-                    //     {
-                    //         victory = true;
-                    //     }
-                    // }
 
                 }
                 else if (scene == "Deadscreen")
@@ -227,10 +220,6 @@ namespace VPN
                     {
                         e.Draw();
                     }
-                    // foreach (Homebase h in homebases)
-                    // {
-                    //     h.Draw();
-                    // }
                 }
 
                 if (scene == "Victory")
