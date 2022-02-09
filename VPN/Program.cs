@@ -86,17 +86,7 @@ namespace VPN
                 }
                 else if (scene == "Deadscreen")
                 {
-                    //deadscreen buttons
-                    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonMenu) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
-                    {
-                        scene = "Menu";
-                    }
-
-                    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonRetry) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
-                    {
-                        scene = "Arena";
-                        p.Reset();
-                    }
+                    scene = DeadscreenUpdate(buttonMenu, buttonRetry, scene, p);
                 }
                 else if (scene == "Victory")
                 {
@@ -132,44 +122,7 @@ namespace VPN
 
                 if (scene == "Deadscreen")
                 {
-                    bgColor = Color.GRAY;
-                    Raylib.DrawTexture(DeadscreenLOGO, 300, 25, Color.WHITE);
-
-                    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonRetry))
-                    {
-                        Raylib.DrawRectangleRec(buttonRetry, Color.WHITE);
-                        Raylib.DrawText("R", 675, 400, 50, Color.BLACK);
-                        Raylib.DrawText("E", 781, 400, 50, Color.BLACK);
-                        Raylib.DrawText("T", 888, 400, 50, Color.BLACK);
-                        Raylib.DrawText("R", 995, 400, 50, Color.BLACK);
-                        Raylib.DrawText("Y", 1100, 400, 50, Color.BLACK);
-                    }
-                    else
-                    {
-                        Raylib.DrawRectangleRec(buttonRetry, Color.BLACK);
-                        Raylib.DrawText("R", 675, 400, 50, Color.WHITE);
-                        Raylib.DrawText("E", 781, 400, 50, Color.WHITE);
-                        Raylib.DrawText("T", 888, 400, 50, Color.WHITE);
-                        Raylib.DrawText("R", 995, 400, 50, Color.WHITE);
-                        Raylib.DrawText("Y", 1100, 400, 50, Color.WHITE);
-                    }
-
-                    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonMenu))
-                    {
-                        Raylib.DrawRectangleRec(buttonMenu, Color.WHITE);
-                        Raylib.DrawText("M", 715, 575, 50, Color.BLACK);
-                        Raylib.DrawText("E", 830, 575, 50, Color.BLACK);
-                        Raylib.DrawText("N", 945, 575, 50, Color.BLACK);
-                        Raylib.DrawText("U", 1060, 575, 50, Color.BLACK);
-                    }
-                    else
-                    {
-                        Raylib.DrawRectangleRec(buttonMenu, Color.BLACK);
-                        Raylib.DrawText("M", 715, 575, 50, Color.WHITE);
-                        Raylib.DrawText("E", 830, 575, 50, Color.WHITE);
-                        Raylib.DrawText("N", 945, 575, 50, Color.WHITE);
-                        Raylib.DrawText("U", 1060, 575, 50, Color.WHITE);
-                    }
+                    DeadscreenDraw(DeadscreenLOGO, buttonRetry, buttonMenu);
                 }
                 Raylib.EndDrawing();
             }
@@ -344,6 +297,61 @@ namespace VPN
             }
         }
 
+        static string DeadscreenUpdate(Rectangle buttonMenu, Rectangle buttonRetry, String scene, Player p)
+        {
+            if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonMenu) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+            {
+                return "Menu";
+            }
+
+            if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonRetry) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+            {
+                p.Reset();
+                return "Arena";
+            }
+            return "Deadscreen";
+        }
+
+        static void DeadscreenDraw(Texture2D Deadscreen_logo, Rectangle buttonRetry, Rectangle buttonMenu)
+        {
+            Raylib.ClearBackground(Color.RED);
+            Raylib.DrawTexture(Deadscreen_logo, 300, 25, Color.WHITE);
+            if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonRetry))
+            {
+                Raylib.DrawRectangleRec(buttonRetry, Color.WHITE);
+                Raylib.DrawText("R", 675, 400, 50, Color.BLACK);
+                Raylib.DrawText("E", 781, 400, 50, Color.BLACK);
+                Raylib.DrawText("T", 888, 400, 50, Color.BLACK);
+                Raylib.DrawText("R", 995, 400, 50, Color.BLACK);
+                Raylib.DrawText("Y", 1100, 400, 50, Color.BLACK);
+            }
+            else
+            {
+                Raylib.DrawRectangleRec(buttonRetry, Color.BLACK);
+                Raylib.DrawText("R", 675, 400, 50, Color.WHITE);
+                Raylib.DrawText("E", 781, 400, 50, Color.WHITE);
+                Raylib.DrawText("T", 888, 400, 50, Color.WHITE);
+                Raylib.DrawText("R", 995, 400, 50, Color.WHITE);
+                Raylib.DrawText("Y", 1100, 400, 50, Color.WHITE);
+            }
+
+            if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), buttonMenu))
+            {
+                Raylib.DrawRectangleRec(buttonMenu, Color.WHITE);
+                Raylib.DrawText("M", 715, 575, 50, Color.BLACK);
+                Raylib.DrawText("E", 830, 575, 50, Color.BLACK);
+                Raylib.DrawText("N", 945, 575, 50, Color.BLACK);
+                Raylib.DrawText("U", 1060, 575, 50, Color.BLACK);
+            }
+            else
+            {
+                Raylib.DrawRectangleRec(buttonMenu, Color.BLACK);
+                Raylib.DrawText("M", 715, 575, 50, Color.WHITE);
+                Raylib.DrawText("E", 830, 575, 50, Color.WHITE);
+                Raylib.DrawText("N", 945, 575, 50, Color.WHITE);
+                Raylib.DrawText("U", 1060, 575, 50, Color.WHITE);
+            }
+        }
 
     }
 }
